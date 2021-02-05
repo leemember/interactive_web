@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transform</title>
+  <style>
+    .box-container {
+      display: flex;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 2px solid salmon;
+      background: rgba(255, 255, 0, 0.7);
+    }
+  .box:hover {
+    /* transform: scale(1.5);  */
+    /* 연산효과며 성능도 scale 쓰는게 더 좋다. */
+    /* transform: scale(2) rotate(15deg); 회전*/
+    /* transform: skew(30deg); 비틀기 */
+    /* transform: translate(30px, 10px); 위치값 변경 */
+    transform: skew(30deg);
+    /* transform-origin: left top; 기준점 잡기 */
+    transform-origin: 100% 100%;
+    /* 기준점 잡을 때 퍼센트로 하는 것이 더 좋다. */
+  }
+  </style>
+</head>
+<body>
+  <section class="interactive">
+    <h1>CSS Transform</h1>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore at, voluptate sequi, nemo id est, minima architecto reiciendis fugit aut porro eos maiores sed recusandae perferendis ea nisi quo. Delectus?
+    </p>
+    <div class="box-container">
+      <div class="box">A</div>
+      <div class="box">B</div>
+      <div class="box">C</div>
+      <div class="box">D</div>
+      <div class="box">E</div>
+    </div>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore at, voluptate sequi, nemo id est, minima architecto reiciendis fugit aut porro eos maiores sed recusandae perferendis ea nisi quo. Delectus?
+    </p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Web</title>
+  <style>
+    .world {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60vw;
+      height: 60vh;
+      /* 
+        vw : view port width
+        vh : view port height
+       */
+       background-color: skyblue;
+       /* perspective: 500px; */
+       /* 
+        .world는 3D 공간이 아니기 때문에
+        원등감 주려면 perspective: 1000px; 이걸 적용해야한다.
+        그래야 3D공간으로 바뀐다.
+        perspective에 적용한 값이 작으면 작을수록 내 눈에 더 가까히 있다는 느낌이다.
+        값이 크면 클수록 크기가 완만하게 보인다.
+        수치 = 내눈과의 거리라고 생각하면됨
+       */
+    }
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        🎨 정가운데로 정렬 할 때
+       */
+      width: 100px;
+      height: 150px;
+
+      margin: 1em;
+      border-radius: 0.5em;
+      font-size: 1.5rem;
+      /* 
+        font-size의 사이즈가 변동되면
+        border-radius도 상대적으로 사이즈가 변한다.
+        폰트사이즈랑 비례할 수 있도록 em을 사용한 것이다.
+       */
+      background: red;
+      transform: perspective(500px) rotateY(45deg);
+      /* .world의 부모태그에 주는것보다 자식태그 transform에 한번에 적용하는 방법도 있다. */
+    }
+  </style>
+</head>
+<body>
+  <div class="world">
+    <div class="card">CARD</div>
+    <div class="card">CARD</div>
+    <div class="card">CARD</div>
+  </div>
+</body>
+</html>

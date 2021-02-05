@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transition</title>
+  <style>
+    .box-container {
+      display: flex;
+    }
+    .box {
+      width: 50px;
+      height: 100px;
+      border: 2px solid salmon;
+      background: rgba(255, 255, 0, 0.7);
+      transition: 0.5s;
+      /* 
+        트렌지션 기본 동작값은 ease임.
+        개발자도구로 원하는 동작 만들어서 사용도 가능하다.
+        cubic-bezier(0.63, 1.26, 0.65, 1.13) 이렇게
+        1s 뒤에있는 2s : delay값 (2초 후에 동작한다는 뜻) 앞에 1s는 1초동안 동작한다.
+
+        1초동안 애니메이션이 진행된다.
+        게다가 트렌지션은 성능도 좋다고함
+      */
+    }
+  .box:hover {
+    width: 200px;
+    background: red;
+  }
+  </style>
+</head>
+<body>
+  <section class="interactive">
+    <h1>CSS Transition</h1>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore at, voluptate sequi, nemo id est, minima architecto reiciendis fugit aut porro eos maiores sed recusandae perferendis ea nisi quo. Delectus?
+    </p>
+    <div class="box-container">
+      <div class="box">A</div>
+      <div class="box">B</div>
+      <div class="box">C</div>
+      <div class="box">D</div>
+      <div class="box">E</div>
+    </div>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore at, voluptate sequi, nemo id est, minima architecto reiciendis fugit aut porro eos maiores sed recusandae perferendis ea nisi quo. Delectus?
+    </p>
+  </section>
+</body>
+</html>

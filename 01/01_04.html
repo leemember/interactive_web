@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Web</title>
+  <style>
+    @keyframes spaceship-ani {
+      /* 0% = from , 100% = to */
+      to { 
+        background-position: -2550px 0;
+      }
+      /* 
+      원래 이미지 가로크기를 2로 나눈값에 -로 밀어낸다 
+      이미지 크기가 5100, 300인데 5100/300 해서 나온 값은 17이다.
+      그래서 STEP별로 보여질 수 있게 기준div값 스타일에
+      animation: spaceship-ani 1s infinite step(17);
+      이렇게 steps(17)을 하면 17단계로 챡챡챡 이미지가 바뀌어 보인다.
+      */
+    }
+
+    .spaceship {
+      width: 150px;
+      height: 150px;
+      background: url('./images/sprite_spaceship.png') no-repeat 0 0 / auto 150px;
+      /* 포토샵에서 이미지를 켰을 때 이미지 가로세로 사이즈 중 더 빨리 계산되는걸로 절반 나눈 값을 적고 나머지 값은 auto적용 하면된다. */
+      /* auto 150px; => 가로 세로 */
+      animation: spaceship-ani 2s infinite reverse steps(17);
+    }
+  </style>
+</head>
+<body>
+  <h1>keyframes Animation</h1>  
+  <div class="spaceship">
+
+  </div>
+
+  <!-- 
+    이 작업을 gif로 해도 되는데 굳이 이런식으로 작업하는 이유는
+    gif의 치명적인 단점이있다. 투명도가 적용이안된다 (알파채널)
+    그래서 이미지가 깨짐
+
+    코드로 마음대로 제어가 가능하다. (속도라던가 방향이라던가 여러모로 가능)
+   -->
+</body>
+</html>
