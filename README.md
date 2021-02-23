@@ -132,7 +132,6 @@ transform-style : preserve-3d;
 > flex:1 => 자동으로 flex-basis도 0이고 flex-grow도 1로 적용된다.
 
 6. flex-grow
-   > 해당 값의 비율을 나타내준다.
 
 ```
   .item:nth-child(1) { flex-grow: 1;}
@@ -142,4 +141,5 @@ transform-style : preserve-3d;
   .item:nth-child(5) { flex-grow: 1;}
 ```
 
+해당 값의 비율을 나타내준다.
 이 값들을 줄 때 기본적으로 display: flex; 를 세팅해줘야 css에 flex 값들이 적용된다.
