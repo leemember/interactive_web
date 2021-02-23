@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex박스에 대한 정리</title>
+</head>
+<style>
+  .container {
+    display: flex;
+    /* flex-direction: row; 일단 기본값은 row라는거*/
+    /* justify-content: flex-start; */
+    /* 
+    justify-content: flex-start;기본값
+    justify-content: flex-end; // 끝으로간다.
+    justify-content: center; // 가운데정렬
+    justify-content: space-between; // 사회적거리두기처럼 여백을 둬서 객체들이 띄워져있다.
+    justify-content: space-around;  // between과 비슷하지만, 객체들이 좀 더 주변으로 가까히 위치해있다.
+     */
+    height: 80vh;
+    background: rosybrown;
+
+    align-items: stretch;
+    /* 이것도 정렬 속성이다. 
+    align-items: stretch; : 기본값. 왼쪽부터 정렬 (수직방향)
+    align-items: flex-start; : 위 (내용 크기만큼)
+    align-items: flex-end; : 아래 
+    align-items: center; : 가운데
+    */
+
+    /* 세로 가로 정렬에 정 가운데에 위치하고 싶다면
+      justify-content:center;
+      align-items:center;
+       이 값을 주면 된다. 
+     */
+  }
+  /* display: flex;를 주는 순간 item들이 세로화면으로 꽉 차있게 되었다. 
+  flex-direction: ;의 기본값은 row이다.
+  근데 column으로 주면 다시 가로화면으로 item들이 꽉 차게 된다.
+  flex-direction: column-reverse;로 하면 반대방향으로 위치가 변한다.
+  flex-direction: row-reverse;도 마찬가지로 세로방향의 위치가 반대로 변한다.
+  */
+
+  .item {
+    padding: 2em;
+    border: 3px solid black;
+    background: burlywood;
+    /* flex-grow: 1;
+    flex-basis: 0; */
+    flex: 1;
+    /* 
+    원래 컨텐츠가 적용하는 영역을 얼만큼 해줄 것인가.
+    flex-basis: 0; 이렇게 해주면 정말 1:1:1로 해준다.
+    안에있는 텍스트 관계없이
+
+    근데 그냥
+    flex: 1; 해주면 그냥 기본값으로
+    자동으로 flex-basis도 0이고 flex-grow도 1이다.
+    */
+  }
+  /* 
+  
+  flex-grow: 1;은
+  비율이 1:1:1:1로 규격이 동일하다.
+  안에있는 
+
+  */
+  /* .item:nth-child(1) { flex-grow: 1;}
+  .item:nth-child(2) { flex-grow: 5;}
+  .item:nth-child(3) { flex-grow: 2;}
+  .item:nth-child(4) { flex-grow: 3;}
+  .item:nth-child(5) { flex-grow: 1;} */
+</style>
+<body>
+  <div class="container">
+    <div class="item">A</div>
+    <div class="item">B</div>
+    <div class="item">C</div>
+    <div class="item">D</div>
+    <div class="item">E</div>
+  </div>
+</body>
+</html>

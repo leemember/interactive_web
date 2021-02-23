@@ -94,3 +94,52 @@ transform-style : preserve-3d;
 ```
 
 효과가 먹히지 않는다. 부모 > 바로 아래 자식한테만 적용이 된다.
+그래서 [2 - 02_02.html] 예제에서는 card라는 div태그를 제거했다.
+
+<br>
+
+## 03 : FLEX 그리드 알아보기
+
+> 알아두면 실무에 자주 사용하니 좋다.
+
+1. justify-content
+
+- justify-content: flex-start; => 기본값
+- justify-content: flex-end; => 끝으로간다.
+- justify-content: center; => 가운데정렬
+- justify-content: space-between; => 사회적 거리두기처럼 일정한 간격으로 여백을 둬서 객체들이 띄워져있다.
+- justify-content: space-around; => between과 비슷하지만, 객체들이 좀 더 주변으로 가까히 위치해있다.
+
+2. align-items
+
+- align-items: stretch; => 기본값. 왼쪽부터 정렬 (수직방향)
+- align-items: flex-start; => 위 (내용 크기만큼)
+- align-items: flex-end; => 아래
+- align-items: center; => 가운데
+
+3. flex-direction
+
+- flex-direction: row; => 기본값
+- flex-direction: column-reverse; => 가로 반대방향으로 위치가 변한다
+- flex-direction: row-reverse; => 세로방향의 위치가 반대로 변한다
+
+4. flex-basis
+
+- flex-basis: 0; => 안에 있는 텍스트 넓이 관계없이 비율이 1 : 1 : 1 로 된다.
+
+5. flex
+
+> flex:1 => 자동으로 flex-basis도 0이고 flex-grow도 1로 적용된다.
+
+6. flex-grow
+   > 해당 값의 비율을 나타내준다.
+
+```
+  .item:nth-child(1) { flex-grow: 1;}
+  .item:nth-child(2) { flex-grow: 5;}
+  .item:nth-child(3) { flex-grow: 2;}
+  .item:nth-child(4) { flex-grow: 3;}
+  .item:nth-child(5) { flex-grow: 1;}
+```
+
+이 값들을 줄 때 기본적으로 display: flex; 를 세팅해줘야 css에 flex 값들이 적용된다.
