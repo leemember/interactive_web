@@ -14,46 +14,48 @@
       background-color: skyblue;
     }
 
-    .card {
-      width: 100px;
-      height: 150px;
-
-      margin: 1em;
-      border-radius: 0.5em;
-      font-size: 1.5rem;
-      background: red;
-      position: relative;
-      transform: rotateY(0deg);
-      transition: 1s;
+      
+      /* 
+      안에있는 애들까지 3D 효과를 적용하려면 
       transform-style: preserve-3d;
-      transform-origin: left;
-      /* 문처럼 열리는 동작을 넣어주려면
+      값을 세팅해주어야 한다.
+
+      문처럼 열리는 동작을 넣어주려면
       transform-origin: left; 값을 넣는다.
       그럼 기준점이 왼쪽으로 되면서 왼쪽 문이 열리는 것 처럼 된다.
        */
-    }
-    /*
-    안에있는 애들까지 3D 효과를 적용하려면 
-    transform-style: preserve-3d;
-    값을 세팅해주어야 한다.
-    */
-
+    
     .card-side {
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 0.5em;
-      position: absolute; 
+      position: absolute;             
       left: 0;
       top:0;
-      height: 100%;
-      width: 100%;
-      backface-visibility: hidden;
+      width: 100px;
+      height: 150px;
+      margin: -75px 0 0 -50px;
       /* 
+      width와 height값의 절반으로 margin값을 -로 땡겨주면
+      정가운데로 카드가 놓여진다.
+       */
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      backface-visibility: hidden;
+      /* 이런것을 벤더프리픽스라고 한다 사파리 접두어는 webkit 
+      새로운 스펙들이 나오면 이런 접두어들을 붙혀줘야 한다. (혹시모르니)
+
       뒷면을 안보이게 하기 위해서는
       backface-visibility: hidden;
       값을 세팅해줘야한다.
+
+      순서는, 벤더프리픽스를 위로 선언해주고
+      backface-visibility: hidden;
+      이런 기본들은 맨 마지막에 선언해주는 것이 좋다.
        */
+       transition: 1s;
     }
 
     .card-side-front {
@@ -66,23 +68,24 @@
       transform: rotateY(180deg);
     }
 
-    .world:hover .card {
-      transform: rotateY(-180deg);
-      /* 
+    .world:hover .card-side-front {
+      transform: rotateY(180deg);
+    }
+
+    .world:hover .card-side-back {
+      transform: rotateY(360deg);
+    }
+     /* 
       문이 바깥에서 열리는 것 처럼 해주려면
       - 값으로 주면 된다.
        */
-    }
   </style>
 </head>
 <body>
   <div class="world">
-    <div class="card">
       <div class="card-side card-side-front">앞면</div>
       <div class="card-side card-side-back">뒷면</div>
-
       <!-- 이 두개를 겹치려면 position: absolute 해줘야함 -->
-    </div>
   </div>
 </body>
 </html>
