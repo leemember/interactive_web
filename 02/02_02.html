@@ -9,9 +9,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60vw;
-      height: 60vh;
+      width: 80vw;
+      height: 80vh;
       background-color: skyblue;
+      perspective: 500px;
     }
 
       
@@ -25,17 +26,29 @@
       그럼 기준점이 왼쪽으로 되면서 왼쪽 문이 열리는 것 처럼 된다.
        */
     
+      .card {
+        position: relative;
+        width: 100px;
+        height: 150px;
+        margin: 1em;
+        transform: rotateY(0deg);
+        transition: 1s;
+        transform-style: preserve-3d;
+        }
+
     .card-side {
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 0.5em;
       position: absolute;             
-      left: 0;
-      top:0;
+      left: 50%;
+      top:50%;
       width: 100px;
       height: 150px;
       margin: -75px 0 0 -50px;
+      border-radius: 0.5em;
+      font-size: 1.5rem;
       /* 
       width와 height값의 절반으로 margin값을 -로 땡겨주면
       정가운데로 카드가 놓여진다.
