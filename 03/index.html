@@ -17,6 +17,7 @@
       align-items: center;
       justify-content: space-around;
       background: #fff000;
+      display: flex;
   }
   .ilbuni {
       width: 100px;
@@ -40,52 +41,29 @@
     </div>
     <div class="ilbuni c">
       <img src="images/ilbuni_2.png" alt="일분이">
-    </div>    
-  </div>
-  <div class="ilbuni d">
-    <img src="images/ilbuni_3.png" alt="일분이">
-  </div>
+    </div>  
+    
+    <div class="ilbuni d">
+      <img src="images/ilbuni_3.png" alt="일분이">
+    </div>
+  </div> 
 
   <script>
-  /*
-  얘는 전역변수인데 얘를 난발하면 스크립트상 안좋다.
-  const ilbuni = document.querySelector('.ilbuni.c');
-  
-  function clickIlbuniHandler() {
-    ilbuni.classList.toggle('special');
-  }
-  ilbuni.addEventListener('click', clickIlbuniHandler);
-  */ 
-
-  //전역변수가 싫다면 함수 안에다가 선언해주어도 된다.
-
-  /*
-  이렇게 함수이름을 짓기가 싫다면 일회성으로 호출해주는 방법도 있다.
-  function ilbun() {
-    const ilbuni = document.querySelector('.ilbuni.c');
-  
-  function clickIlbuniHandler() {
-    ilbuni.classList.toggle('special');
-  }
-  ilbuni.addEventListener('click', clickIlbuniHandler);
-  }
-
-  ilbun();
-  */
-
   (function() {
-    const ilbuni = document.querySelector('.ilbuni.c');
+    const characters = document.querySelector('.characters');
   
-  function clickIlbuniHandler() {
-    ilbuni.classList.toggle('special');
+  //clickHandler(e)에서 e는 event를 뜻한다.
+  //console.log(e); 이렇게 해주면 어떤 이벤트를 썼는지 알 수가 있다.
+  function clickHandler(e) {
+    // console.log(this);  => characters를 클릭하는 걸로 설정했으니 characters얘를 가르킨다.
+    // console.log(e));  => 어떤 이벤트를 사용했는지 알려준다. 이벤트를 지정해줄 때 사용하면 좋다.
+    // console.log(e.currentTarget); => 이것도 characters 얘를 찍어준다.
+    // console.log(e.target); => 내가 어떤 이미지를 찍었는지, 타겟이 자세하게 나온다.
+    console.log(e.target); 
   }
-  ilbuni.addEventListener('click', clickIlbuniHandler);
-  })();
 
-  /*
-  이렇게 전체 함수를 ()로 감싸주고 호출 할 때도 ()이것만 넣으면 동작이 된다.
-  그리고 어디 취업을 할 때도 이렇게 코드를 작성하는 것이 더 가산점이 된다고 한다.
-  */
+  characters.addEventListener('click', clickHandler);
+  })();
   </script>
 </body>
 </html>

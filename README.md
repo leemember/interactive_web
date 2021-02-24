@@ -278,7 +278,7 @@ addEventListener('DOMContentLoaded', function()
 
 그럼 이런 것도 선언 안해줘도 된다.
 
-### 스크립트 주의할 점
+### 💥 스크립트 주의할 점
 
 ```
 const ilbuni = document.querySelector('.ilbuni.c');
@@ -319,3 +319,24 @@ ilbuni.addEventListener('click', clickIlbuniHandler);
 ```
 
 > 이렇게 전체 함수에 ()로 감싸주고 호출 할 떄도 () 이것만 호출해주면 동작이 된다. 그리고 어디 취업할 때도 이렇게 코드를 작성하는 것이 더 가산점이 된다고 한다.
+
+### <b> 💥 this와 이벤트 객체 알아보기</b>
+
+```
+(function() {
+  const characters = document.querySelector('.characters');
+
+  function clickHandler(e) {
+    console.log(e.target);
+  }
+  characters.addEventListener('click', clickHandler);
+  })();
+```
+
+> 여기서 clickHandler(e)에서 e는 event를 뜻한다.
+> console.log(e); 이렇게 해주면 어떤 이벤트를 썼는지 알 수가 있다.
+
+- console.log(this); => characters를 클릭하는 걸로 설정했으니 characters얘를 가르킨다.
+- console.log(e); => 어떤 이벤트를 사용했는지 알려준다. 이벤트를 지정해줄 때 사용하면 좋다.
+- console.log(e.currentTarget); => 이것도 characters 얘를 찍어준다.
+- console.log(e.target); => 내가 어떤 이미지를 찍었는지, 타겟이 자세하게 나온다.
