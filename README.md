@@ -263,8 +263,8 @@ ilbuni.addEventListener('click', function() {
 > script를 선언할 때 body 태그 안에 있는 것들 보다 위에 선언해줄 경우, window.addEventListener('DOMContentLoaded', function() 을 안해주면 콘솔에 null값이 찍힌다. 그 이유는 브라우저가 렌더링을 할 때 위에서부터 읽어내려오는데, body값보다 script가 먼저 선언 되었기 때문이다. 그래서 window.addEventListener('DOMContentLoaded', function() 이 문구안에다가 script 내용들을 넣어야 한다.
 > window.addEventListener 중에 load라는 값과 DOMContentLoaded라는 값이 있는데, 두 개의 기능을 살펴보면 이렇다.
 
-💥 window.addEventListener('load', function() { => 이 파일에 있는 모든 내용물들이 load가 되야 함수들이 실행된다.<br>
-💥 window.addEventListener('DOMContentLoaded', function() { => html에 있는 골격 부분들만 load가 끝나면 실행이 된다.
+- window.addEventListener('load', function() { => 이 파일에 있는 모든 내용물들이 load가 되야 함수들이 실행된다.
+- window.addEventListener('DOMContentLoaded', function() { => html에 있는 골격 부분들만 load가 끝나면 실행이 된다.
 
 공통점은 둘 다 body 위에 script를 넣어도 렌더링을 할 수 있게 해준다는 것이고. E9이상부터 지원이 되는 문법이다.
 
