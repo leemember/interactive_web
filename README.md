@@ -143,3 +143,74 @@ transform-style : preserve-3d;
 
 해당 값의 비율을 나타내준다.
 이 값들을 줄 때 기본적으로 display: flex; 를 세팅해줘야 css에 flex 값들이 적용된다.
+
+---
+
+## 😎 인터랙티브 <b>웹 개발을 위한 자바스크립트 시작</b>하기
+
+<br>
+
+### DOM 스크립트
+
+```
+document.querySelector('.character .ilbuni:nth-child(2)')
+```
+
+이런식으로 css로 조작하여 두 번째 객체를 선택할 수도 있다.
+
+data-로 시작하는 표준 커스텀 속성이다.
+
+- data-index
+- data-id
+- data-role
+
+등 data- 의 형식으로 시작하면 어떤 속성이든 필요에 따라 임의로 추가할 수 있다.
+
+```
+char.setAttribute('data-id', 123)
+```
+
+이렇게 지정하고
+
+```
+char.getAttribute('data-id')
+```
+
+> 입력하면 "123"이 출력된다.
+
+<br><br>
+
+### 😁 객체 붙히기
+
+```
+객체명.appendChild()
+```
+
+> 이 메서드는 넣고싶은 객체를 붙일 수 있다.
+
+```
+removeChild()
+```
+
+> 객체를 삭제한다.
+
+```
+const abc = document.querySelector('.ilbuni');
+abc.classList.add('special');
+```
+
+> 클레스를 붙혀준다. special이라는 스타일을 가진 클레스를 붙혀줌.
+
+```
+const abc = document.querySelector('.ilbuni');
+abc.classList.remove('special');
+```
+
+> 클레스를 삭제해준다. special이라는 스타일을 가진 클레스를 삭제해줌
+
+```
+const abc = document.querySelector('.ilbuni');
+abc.classList.toggle('special');
+```
+
+> 한 번 실행해주면 true로 스페셜 클레스를 붙혀주고, 또 재실행 하면 false로 스페셜 클래스가 제거된다.
