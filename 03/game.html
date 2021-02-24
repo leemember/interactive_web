@@ -18,18 +18,31 @@
 
   <script>
     (function() {
-      const ilbuniGroup = document.querySelectorAll('.ilbuni');
+      //이벤트 위임
+      //이건 click 이벤트 할 때 정말 좋다.
+      // const ilbuniGroup = document.querySelectorAll('.ilbuni');
       const stage = document.querySelector('.stage');
 
       function clickHandler(e) {
         // stage.removeChild(this);
-        this.parentNode.removeChild(this);
+        // this.parentNode.removeChild(this);
         //이렇게 해줘도 위와 같은 코드로 적용된다.
+
+        //if문에서 사용되는 contains는 클레스 ilbuni를 가지고 있는지 true/false값으로 판단하면서 이벤트를 적용시켜준다.
+        //그러므로 일분이가 있으면 true로, 일분이를 클릭하면 사라진다.
+        //flase인 값인 stage 배경을 클릭하면 false로 클릭해도 안사라지고 에러도 안난다.
+        if (e.target.classList.contains('ilbuni')) {
+          stage.removeChild(e.target);
+        }
+        
       }
 
-      for (let i = 0; i < ilbuniGroup.length; i++) {
-        ilbuniGroup[i].addEventListener('click', clickHandler);
-      }
+      stage.addEventListener('click', clickHandler);
+      // 이 횟수가 많으면 많아질수록 프로젝트 메모리상 성능이 안좋아진다.
+      //그래서 이벤트위임이라는 기법을 사용하는 것이 바람직하다.
+      // for (let i = 0; i < ilbuniGroup.length; i++) {
+      //   ilbuniGroup[i].addEventListener('click', clickHandler);
+      // }
     })();
   </script>
 </body>

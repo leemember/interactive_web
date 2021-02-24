@@ -213,7 +213,7 @@ const abc = document.querySelector('.ilbuni');
 abc.classList.toggle('special');
 ```
 
-> 한 번 실행해주면 true로 스페셜 클레스를 붙혀주고, 또 재실행 하면 false로 스페셜 클래스가 제거된다.
+> 한 번 실행해주면 true로 스페셜 클레스를 붙혀주고, 또 재실행 하면 false로 스페셜 클래스가 제거된다. 쉽게말해 on/off 기능이다.
 
 <br><br>
 
@@ -260,13 +260,13 @@ ilbuni.addEventListener('click', function() {
   </div>
 ```
 
-> script를 선언할 때 body 태그 안에 있는 것들 보다 위에 선언해줄 경우, window.addEventListener('DOMContentLoaded', function() 을 안해주면 콘솔에 null값이 찍힌다. 그 이유는 브라우저가 렌더링을 할 때 위에서부터 읽어내려오는데, body값보다 script가 먼저 선언 되었기 때문이다. 그래서 저 문구안에다가 script 내용들을 넣어야 한다.
+> script를 선언할 때 body 태그 안에 있는 것들 보다 위에 선언해줄 경우, window.addEventListener('DOMContentLoaded', function() 을 안해주면 콘솔에 null값이 찍힌다. 그 이유는 브라우저가 렌더링을 할 때 위에서부터 읽어내려오는데, body값보다 script가 먼저 선언 되었기 때문이다. 그래서 window.addEventListener('DOMContentLoaded', function() 이 문구안에다가 script 내용들을 넣어야 한다.
 > window.addEventListener 중에 load라는 값과 DOMContentLoaded라는 값이 있는데, 두 개의 기능을 살펴보면 이렇다.
 
-- 💥 window.addEventListener('load', function() { => 이 파일에 있는 모든 내용물들이 load가 되야 함수들이 실행된다.
-- 💥 window.addEventListener('DOMContentLoaded', function() { => html에 있는 골격 부분들만 load가 끝나면 실행이 된다.
+💥 window.addEventListener('load', function() { => 이 파일에 있는 모든 내용물들이 load가 되야 함수들이 실행된다.<br>
+💥 window.addEventListener('DOMContentLoaded', function() { => html에 있는 골격 부분들만 load가 끝나면 실행이 된다.
 
-공통점은 둘 다 body위에 script를 넣어도 렌더링을 할 수 있게 해준다는 것이고. E9이상부터 지원이 되는 문법이다.
+공통점은 둘 다 body 위에 script를 넣어도 렌더링을 할 수 있게 해준다는 것이고. E9이상부터 지원이 되는 문법이다.
 
 <br>
 
@@ -289,7 +289,7 @@ const ilbuni = document.querySelector('.ilbuni.c');
   ilbuni.addEventListener('click', clickIlbuniHandler);
 ```
 
-> ilbuni는 전역변수인데 전역변수를 스크립트 코드에 난발하면 스크립트상 안좋다.
+> ilbuni은 전역변수인데 전역변수를 스크립트 코드에 난발하면 스크립트상 안좋다.
 > 그래서 전역변수로 지정해주고싶지 않다면 함수 안에다가 선언해줄 수도 있다.
 
 ```
@@ -318,7 +318,7 @@ ilbuni.addEventListener('click', clickIlbuniHandler);
 })();
 ```
 
-> 이렇게 전체 함수에 ()로 감싸주고 호출 할 떄도 () 이것만 호출해주면 동작이 된다. 그리고 어디 취업할 때도 이렇게 코드를 작성하는 것이 더 가산점이 된다고 한다.
+> 이렇게 전체 함수에 ()로 감싸주고 호출 할 때도 () 이것만 호출해주면 동작이 된다. 그리고 어디 취업할 때도 이렇게 코드를 작성하는 것이 더 가산점이 된다고 한다.
 
 ### <b> 💥 this와 이벤트 객체 알아보기</b>
 
@@ -336,7 +336,77 @@ ilbuni.addEventListener('click', clickIlbuniHandler);
 > 여기서 clickHandler(e)에서 e는 event를 뜻한다.
 > console.log(e); 이렇게 해주면 어떤 이벤트를 썼는지 알 수가 있다.
 
-- console.log(this); => characters를 클릭하는 걸로 설정했으니 characters얘를 가르킨다.
+- console.log(this); => characters를 클릭하는 걸로 설정했으니 characters 얘를 가르킨다.
 - console.log(e); => 어떤 이벤트를 사용했는지 알려준다. 이벤트를 지정해줄 때 사용하면 좋다.
 - console.log(e.currentTarget); => 이것도 characters 얘를 찍어준다.
 - console.log(e.target); => 내가 어떤 이미지를 찍었는지, 타겟이 자세하게 나온다.
+
+<br>
+
+## 💝 자바스크립트 할 때 중요한 <b>이벤트위임</b>
+
+<br>
+
+### 이벤트 위임이란?
+
+```
+for (let i = 0; i < ilbuniGroup.length; i++) {
+  ilbuniGroup[i].addEventListener('click', clickHandler);
+}
+```
+
+예를들어 엘리먼트가 여러 개라 이렇게 반복문을 돌려서 코딩을 할 경우, 엘리먼트의 갯수가 많아지면 이 반복문의 횟수도 많아질 것이다. 그렇게 되면 프로젝트 메모리상 성능이 안좋아진다. 그래서 <b>이벤트위임</b>이라는 기법을 사용하는 것이 바람직하다.
+
+이벤트위임은 Click이벤트를 할 때 정말 좋은 방식이다.
+
+```
+function clickHandler(e) {
+  if (e.target.classList.contains('ilbuni')) {
+    stage.removeChild(e.target);
+  }
+}
+```
+
+> if문에서 사용되는 contains는 클레스 ilbuni을 가지고 있는지 [true, false]값으로 판단하면서 이벤트를 적용시켜준다. 그러므로 일분이가 있으면 true라는 값이 매겨지면서 일분이를 클릭하면 사라지게 해준다. false인 값으로 판독되면 stage 배경을 클릭해도 이벤트가 적용이 안되며 에러도 안난다.
+
+<br>
+
+### <b>이벤트위임을 적용한 다른 click 이벤트의 프로젝트</b>
+
+```
+const menu =  document.querySelector('.menu');
+
+function clickHandler(event) {
+  let elem = event.target;
+  while (!elem.classList.contains('menu-btn')) {
+    elem = elem.parentNode;
+    if(elem.nodeName == 'BODY') {
+      elem = null;
+      return;
+    }
+  }
+
+  console.log(elem.dataset.value);
+  // console.log(event.target.getAttribute('data-value'));
+}
+```
+
+> 위 코드에서 console.log(event.target.getAttribute('data-value')); 이렇게 콘솔 결과를 보고싶으면, css에서 pointer-events: none; 라는 속성을 꼭 기입해줘야 한다.
+
+```
+<button class="menu-btn" 🧡 data-value="1">
+  <img src="./images/ilbuni_1.png" alt="" class="icon">
+  <span class="btn-label">일분이1</span>
+</button>
+```
+
+> 그리고 해당 값을 나타내고 싶은 엘리먼트에 data-value="1"값을 지정해줘야한다. 다른 엘리먼트들의 값은 안잡히게 하고싶으면 따로 CSS에다가 그 엘리먼트에 pointer-events: none; 이 속성을 적용해줘야한다. 그래야 다른 속성들은 클릭해도 콘솔창에 값이 안나타난다.
+
+```
+if(elem.nodeName == 'BODY') {
+  elem = null;
+  return;
+}
+```
+
+> 여기서 <b>nodeName 이란?</b> 태그 이름을 문자열로 갖고 있는 속성이다. 그리고 IF문으로 적용한 BODY는 대문자로 하는 것이 맞다. parentNode란 부모 엘리먼트를 의미한다.
