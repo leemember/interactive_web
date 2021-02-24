@@ -7,10 +7,43 @@
   <title>자바스크립트로 만드는 인터랙티브 웹</title>
   <link rel="stylesheet" href="css/reset.css">
 </head>
+<style>
+  img {
+      max-width: 100%;
+      height: auto;
+  }
+  .characters {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: #fff000;
+  }
+  .ilbuni {
+      width: 100px;
+      cursor: pointer;
+  }
+  .characters .ilbuni {
+      display: inline-block;
+  }
+  .special {
+      border: 10px dashed red;
+  }
+</style>
 <script>
-  window.addEventListener('load', function() {
+  // window.addEventListener('load', function() {
+  window.addEventListener('DOMContentLoaded', function() {
+    //load라는 이벤트리스너보다 더 좋은 것은 DOMContentLoaded이다.
+    // 돔 콘텐츠가 로드가 됐다는 이벤트임.
+    // 둘의 차이점은
+    //load는 이 파일에 있는 모든 것들이 load가 되야 실행이 되는것이고
+    //DOMContentLoaded는 html에있는 골격 부분들만 load가 끝나면 실행이된다.
+    //EI9 이상부터 지원이 된다.
     const ilbuni = document.querySelector('.ilbuni.c');
-    console.log(ilbuni);
+    
+    function clickIlbuniHandler() {
+      ilbuni.classList.toggle('special');
+    }
+    ilbuni.addEventListener('click', clickIlbuniHandler);
   })
 
   //body위에다 script를 선언할 경우 window객체로 load값을 꼭 실행해주어야한다.
@@ -26,10 +59,10 @@
     </div>
     <div class="ilbuni c">
       <img src="images/ilbuni_2.png" alt="일분이">
-    </div>
-    <div class="ilbuni d">
-      <img src="images/ilbuni_3.png" alt="일분이">
-    </div>
+    </div>    
+  </div>
+  <div class="ilbuni d">
+    <img src="images/ilbuni_3.png" alt="일분이">
   </div>
 </body>
 </html>
