@@ -150,7 +150,7 @@ transform-style : preserve-3d;
 
 <br>
 
-### DOM 스크립트
+### 😁 DOM 스크립트
 
 ```
 document.querySelector('.character .ilbuni:nth-child(2)')
@@ -214,3 +214,20 @@ abc.classList.toggle('special');
 ```
 
 > 한 번 실행해주면 true로 스페셜 클레스를 붙혀주고, 또 재실행 하면 false로 스페셜 클래스가 제거된다.
+
+<br><br>
+
+### 😁 이벤트 다루기
+
+```
+const ilbuni = document.querySelector('.ilbuni:nth-child(3)')
+ilbuni.addEventListener('click', function() {
+  ilbuni.classListe.add('special');
+}, )
+```
+
+> 이벤트를 리스너 시킬 때 addEventListener이렇게 메소드를 선언한 후에 어떤 이벤트를 실행할 것인지 이벤트명을 넣고 함수를 작성해주면 된다.
+> 💛이 코드는 클릭을 할 때마다 special이라는 클레스가 붙도록 지정해주었다.
+
+1. 클릭할 엘리먼트를 지정해준다.
+2. add리스너를 붙혀줌으로써 이벤트를 등록 해준다.

@@ -4,9 +4,32 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>자바스크립트로 만드는 인터랙티브 웹</title>
+  <link rel="stylesheet" href="css/reset.css">
 </head>
+<script>
+  window.addEventListener('load', function() {
+    const ilbuni = document.querySelector('.ilbuni.c');
+    console.log(ilbuni);
+  })
+
+  //body위에다 script를 선언할 경우 window객체로 load값을 꼭 실행해주어야한다.
+  //안해주면 null값이 나타난다. 왜냐면 body안에 있는 객체를 읽기전에 script를 먼저 렌더링 했기 때문이다. 
+</script>
 <body>
-  
+  <div class="characters">
+    <div class="ilbuni a">
+      <img src="images/ilbuni_0.png" alt="일분이">
+    </div>
+    <div class="ilbuni b">
+      <img src="images/ilbuni_1.png" alt="일분이">
+    </div>
+    <div class="ilbuni c">
+      <img src="images/ilbuni_2.png" alt="일분이">
+    </div>
+    <div class="ilbuni d">
+      <img src="images/ilbuni_3.png" alt="일분이">
+    </div>
+  </div>
 </body>
 </html>
