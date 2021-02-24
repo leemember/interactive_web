@@ -231,3 +231,91 @@ ilbuni.addEventListener('click', function() {
 
 1. 클릭할 엘리먼트를 지정해준다.
 2. add리스너를 붙혀줌으로써 이벤트를 등록 해준다.
+
+```
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    const ilbuni = document.querySelector('.ilbuni.c');
+    function clickIlbuniHandler() {
+      ilbuni.classList.toggle('special');
+    }
+    ilbuni.addEventListener('click', clickIlbuniHandler);
+  })
+</script>
+
+<body>
+  <div class="characters">
+    <div class="ilbuni a">
+      <img src="images/ilbuni_0.png" alt="일분이">
+    </div>
+    <div class="ilbuni b">
+      <img src="images/ilbuni_1.png" alt="일분이">
+    </div>
+    <div class="ilbuni c">
+      <img src="images/ilbuni_2.png" alt="일분이">
+    </div>
+  </div>
+  <div class="ilbuni d">
+    <img src="images/ilbuni_3.png" alt="일분이">
+  </div>
+```
+
+> script를 선언할 때 body 태그 안에 있는 것들 보다 위에 선언해줄 경우, window.addEventListener('DOMContentLoaded', function() 을 안해주면 콘솔에 null값이 찍힌다. 그 이유는 브라우저가 렌더링을 할 때 위에서부터 읽어내려오는데, body값보다 script가 먼저 선언 되었기 때문이다. 그래서 저 문구안에다가 script 내용들을 넣어야 한다.
+> window.addEventListener 중에 load라는 값과 DOMContentLoaded라는 값이 있는데, 두 개의 기능을 살펴보면 이렇다.
+
+- 💥 window.addEventListener('load', function() { => 이 파일에 있는 모든 내용물들이 load가 되야 함수들이 실행된다.
+- 💥 window.addEventListener('DOMContentLoaded', function() { => html에 있는 골격 부분들만 load가 끝나면 실행이 된다.
+
+공통점은 둘 다 body위에 script를 넣어도 렌더링을 할 수 있게 해준다는 것이고. E9이상부터 지원이 되는 문법이다.
+
+<br>
+
+### 💥 제일 좋은 방법은 script문을 그냥 맨 아래에 삽입하기
+
+```
+addEventListener('DOMContentLoaded', function()
+```
+
+그럼 이런 것도 선언 안해줘도 된다.
+
+### 스크립트 주의할 점
+
+```
+const ilbuni = document.querySelector('.ilbuni.c');
+
+  function clickIlbuniHandler() {
+    ilbuni.classList.toggle('special');
+  }
+  ilbuni.addEventListener('click', clickIlbuniHandler);
+```
+
+> ilbuni는 전역변수인데 전역변수를 스크립트 코드에 난발하면 스크립트상 안좋다.
+> 그래서 전역변수로 지정해주고싶지 않다면 함수 안에다가 선언해줄 수도 있다.
+
+```
+ function ilbun() {
+    const ilbuni = document.querySelector('.ilbuni.c');
+
+  function clickIlbuniHandler() {
+    ilbuni.classList.toggle('special');
+  }
+  ilbuni.addEventListener('click', clickIlbuniHandler);
+  }
+
+  ilbun();
+```
+
+> 이렇게 함수 안에다가 ilbun라는 함수를 만들어놓고, 호출 해즐 때도 ilbun() 이렇게 호출할 수도 있다. 하지만 함수이름 짓기가 싫다면 일회성으로 호출해주는 방법도 있다.
+
+```
+(function() {
+  const ilbuni = document.querySelector('.ilbuni.c');
+
+function clickIlbuniHandler() {
+  ilbuni.classList.toggle('special');
+}
+ilbuni.addEventListener('click', clickIlbuniHandler);
+})();
+```
+
+> 이렇게 전체 함수에 ()로 감싸주고 호출 할 떄도 () 이것만 호출해주면 동작이 된다. 그리고 어디 취업할 때도 이렇게 코드를 작성하는 것이 더 가산점이 된다고 한다.
