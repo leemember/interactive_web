@@ -66,6 +66,7 @@
       transition: 0.5s; 
       transform-origin: 0%;
       }
+     
     .door-opened:hover .door-body { transform: rotateY(-110deg) perspective(800px); }
     /* 문을 당기는 효과를 주려면 rotateY() 값을 음수로 넣어주면 된다. */
     .door-opened:hover .ilbuni {
@@ -85,7 +86,7 @@
       <div class="door-body"></div>
     </div>
 
-    <div class="door door-opened">
+    <div class="door">
       <div class="door-back">
         <div class="ilbuni"></div>
       </div>      
@@ -105,24 +106,36 @@
       const stageElem = document.querySelector('.stage');
       //현재 활성화된 아이템을 저장
       let currentItem;
+      
+      //활성화
+      function activate(elem) {
+        elem.classList.add('door-opened');
+          currentItem = elem;
+      }
+
+      //비활성화
+      function inactivate(elem) {
+        elem.classList.remove('door-opened');
+      }
 
       //여러개 중에 하나만 활성화 되는 이벤트 코드이다.
       function dooerHandler(e) {
         const targetElem = e.target;
+
         if (currentItem) {
-          //비활성화 기능
-          currentItem.classList.remove('door-opened');
+          inactivate(currentItem);
         }
 
-        //contains 는 door-body얘를 가지고 있으면 true, 안가지고 있으면 false
+        
+      //contains 는 door-body얘를 가지고 있으면 true, 안가지고 있으면 false
         if(targetElem.classList.contains('door-body')) {
-          targetElem.parentNode.classList.add('door-opened');
-          //활성화 기능
-          currentItem = targetElem.parentNode;
+          activate(targetElem.parentNode);
         }
       } 
 
       stageElem.addEventListener('click', dooerHandler);
+
+      activate( document.querySelector('.door:nth-child(1)') );
     })();
   </script>
 </body>
