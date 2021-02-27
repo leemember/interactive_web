@@ -6,7 +6,7 @@
 
 ## 첫 번째 프로젝트
 
-![2](https://user-images.githubusercontent.com/71499150/109392415-40be4f00-795f-11eb-9f8e-f318919b7b9b.gif)
+<img src = "https://user-images.githubusercontent.com/71499150/109392587-4ff1cc80-7960-11eb-9e9d-6496077ae8f8.gif" width="400px">
 
 [코드 보러가기](./03/game.html)
 
@@ -14,8 +14,7 @@
 
 ## 두 번째 프로젝트
 
-
-![01](https://user-images.githubusercontent.com/71499150/109392255-82022f00-795e-11eb-9bbf-c68e71965484.gif)
+<img src = "https://user-images.githubusercontent.com/71499150/109392255-82022f00-795e-11eb-9bbf-c68e71965484.gif" width="400px">
 
 [코드 보러가기](./03/threeDoor.html)
 
