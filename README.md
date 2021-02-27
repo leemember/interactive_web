@@ -429,3 +429,79 @@ if(elem.nodeName == 'BODY') {
 ```
 
 > 여기서 <b>nodeName 이란?</b> 태그 이름을 문자열로 갖고 있는 속성이다. 그리고 IF문으로 적용한 BODY는 대문자로 하는 것이 맞다. parentNode란 부모 엘리먼트를 의미한다.
+
+<br>
+
+## 💝 객체 Object
+
+<br>
+객체란 ? 속성과 기능들
+
+```
+[객체를 선언해주는 첫번째 방법]
+const person = {};
+      person.name = '일분이';
+      person.age = 10;
+      console.log(person);
+      person.introduce = function() {
+        console.log('안녕하세요 저는 일분이이고 나이는 10살이에요');
+      }
+      person.introduce();
+```
+> 속성들 중에 값이 함수인 것들은 메서드라 부른다.
+
+```
+person.introduce = function() {
+        console.log('안녕하세요 저는 일분이이고 나이는 10살이에요');
+      }
+```
+이런 걸 <b>메서드</b>라고 부름
+
+```
+[객체를 선언해주는 두 번째 방법이자 많이들 사용하는 형태]
+const person = {
+        name: '일분이',
+        age: 10,
+        introduce: function() {
+          console.log('안녕하세요? 저는 일분이이고 나이는 10살 이에요');
+        }
+      };
+      console.log('person.name');
+      person.introduce();
+```
+> 아예 객체를 const를 사용하여 변수로 만들기
+
+```
+const person = {
+        nickname: '일분이',
+        age: 10,
+        introduce: function() {
+          console.log(`안녕하세요? 저는 ${this.nickname}이고 나이는 ${this.age}이에요`)
+        }
+      };
+```
+>여기서 this까지 해주어야 한다. 그래야 콘솔창에 값이 찍힌다. (this = 메서드가 실행한 주최 객체)
+
+### 생성자와 인스턴스 알아보기
+
+```
+      function Person(nickname, age) {
+        this.nickname = nickname;
+        this.age = age;
+      }
+
+      //똑같이 공유되는 introduce 같은 경우 프로토타입으로 관리를 해주면 좋다.
+      Person.prototype.introduce = function() {
+          console.log(`안녕하세요 저는 ${this.nickname} 이고 나이는 ${age}살 입니다.`);
+        }
+
+      const person1 = new Person('일분이', 10);
+      const person2 = new Person('이분이', 8);
+
+      person1.introduce();
+      person2.introduce();
+```
+> 생성자(constructor) : 생성자를 만들 때는 왠만하면 첫글자는 대문자로 해준다. <br>
+인스턴스 : new를 붙혀서 변수를 만들었기 때문에 각각 this를 해준 함수에서 원하는 값을 출력해준다.<br>
+파라미터 매개변수를 통해 값들을 뽑아내니 더욱 더 코드가 가독성도 좋아지고 간결화되었다.
+그리고 공통되는 부분들은 prototype으로 코드들을 관리를 해주면 된다.

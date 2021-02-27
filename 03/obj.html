@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object</title>
+</head>
+<body> 
+    <h1>Object</h1>
+
+    <script>
+      //생성자(constructor) : 생성자를 만들 때는 왠만하면 첫글자는 대문자로 해준다.
+      function Person(nickname, age) {
+        this.nickname = nickname;
+        this.age = age;
+      }
+
+      //똑같이 공유되는 introduce 같은 경우 프로토타입으로 관리를 해주면 좋다.
+      Person.prototype.introduce = function() {
+          console.log(`안녕하세요 저는 ${this.nickname} 이고 나이는 ${age}살 입니다.`);
+        }
+
+      //인스턴스 instance
+      const person1 = new Person('일분이', 10);
+      const person2 = new Person('이분이', 8);
+      //여기서 new를 붙혔기 때문에 각각 this를 해서 원하는 값을 출력해준다.
+
+      person1.introduce();
+      person2.introduce();
+    </script>
+</body>
+</html>
