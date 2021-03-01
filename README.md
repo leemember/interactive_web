@@ -507,7 +507,7 @@ const person = {
 그리고 공통되는 부분들은 prototype으로 코드들을 관리를 해주면 된다.
 
 ### 🌺 스크롤 다루기
->스크롤을 잘 다루면 애플 사이트처럼 스크롤을 내릴 때 인터렉티브한 생동감 있는 웹사이트를 만들 수 있다.
+>스크롤을 잘 다루면 애플 사이트처럼 스크롤을 내릴 때 인터렉티브한 생동감 있는 웹사이트를 만들 수 있다. 그래서 스크롤 위치에 따라 오브젝트를 조작해보도록 하자.
 
  ```
       const outputElem = document.querySelector('.output');
@@ -516,4 +516,27 @@ const person = {
       });
  ```
 
- 이 코드에서 쓰인 pageYOffset이 스크롤 위치를 알려주는 이벤트 리스너다.
+ 이 코드에서 쓰인 pageYOffset이 스크롤 위치를 알려주는 코드이다. 
+
+ ```
+      const outputElem = document.querySelector('.output');
+      const ilbuniElem = document.querySelector('.ilbuni');
+      let num = 0;
+
+      function showValue() {
+        let posY = ilbuniElem.getBoundingClientRect().top;
+        outputElem.innerHTML = posY;
+
+         if(posY < window.innerHeight * 0.2) {
+          ilbuniElem.classList.add('zoom');
+         } else {
+          ilbuniElem.classList.remove('zoom');
+         }
+      }
+
+      window.addEventListener('scroll', function() {
+        showValue();
+      });
+      showValue();
+ ```
+ > 먼저 일분이 변수와, header부분 변수를 선언해준다. 그리고 어떤 이벤트를 리스너시켜 줄 때는 함수로 만들어서 관리해주는 것이 좋다. showValue라는 이름으로 함수를 선언해주는데 그 함수 안에다가 또 포지션y값의 변수를 선언해준다. 그리고 일분이가 top부분에 도달했을 때에 조건문 (if)을 사용해서 그 위치의 0.2배 쯤 도달했을 경우 css로 미리 zoom이라는 클래스의 스타일을 만들어준 다음에 자바스크립트로 zoom클레스를 붙혀준다. 그리고 top부분과 멀어져 가면 zoom 클레스를 제거해주는 형태로 코드를 짜면 된다. 그리고 마지막에는 scroll이라는 이벤트 리스너를 사용해 위에 조건문이 선언된 함수를 호출해주면 된다.
