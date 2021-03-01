@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스크롤 다루기</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <style>
+    img {
+      max-width: 100%;
+    }
+
+    .content {
+      /* viewport view */
+      height: 1000vh;
+      padding: 20%;
+      background: yellowgreen;
+    }
+    .output {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      font-size: 2rem;
+      font-weight: 200;
+      color: #fff;
+      background: rgba(0,0,0,0.4);
+    }
+    .ilbuni {
+      width: 100px;
+      margin: 20px auto;
+      transition: 1s;
+    }
+  .ilbuni.zoom {
+    transform: scale(2);
+  }
+  </style>
+</head>
+<body>
+  <div class="output">output</div>
+  <div class="content">
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eius nam atque possimus nobis exercitationem, obcaecati deleniti a numquam commodi omnis quae error in, cupiditate voluptatibus quia fugiat nisi dolor odio?
+    </p>
+    <figure class="ilbuni">
+      <img src="images/ilbuni_0.png" alt="일분이">
+    </figure>
+  </div>
+
+  <script>
+    (function() {
+      const outputElem = document.querySelector('.output');
+      const ilbuniElem = document.querySelector('.ilbuni');
+      let num = 0;
+
+      //이벤트리스너는 함수로 만들어서 관리해주는 것이 좋다.
+      function showValue() {
+        //outputElem.innerHTML = window.pageYOffset;
+        //outputElem.innerHTML = ilbuniElem.offsetTop();
+
+        // 일분이가 top에 있는 위치 변수 선언
+        let posY = ilbuniElem.getBoundingClientRect().top;
+        // height 위치값
+        outputElem.innerHTML = posY;
+
+        // 만약에, 일분이 위치가 헤더쪽에 가까워지면 zoom클레스를 붙혀줘서 크기가 2배되도록
+         if(posY < window.innerHeight * 0.2) {
+          ilbuniElem.classList.add('zoom');
+         } else { // 그렇지 않다면 클레스를 지워주자.
+          ilbuniElem.classList.remove('zoom');
+         }
+      }
+
+      //스크롤을 내리면 일분이가 포지션 값에 따라 크기가 커지고 작아지고하는 코드 구현
+      window.addEventListener('scroll', function() {
+        showValue();
+      });
+      showValue();
+    })();
+  </script>
+</body>
+</html>

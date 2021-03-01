@@ -505,3 +505,15 @@ const person = {
 인스턴스 : new를 붙혀서 변수를 만들었기 때문에 각각 this를 해준 함수에서 원하는 값을 출력해준다.<br>
 파라미터 매개변수를 통해 값들을 뽑아내니 더욱 더 코드가 가독성도 좋아지고 간결화되었다.
 그리고 공통되는 부분들은 prototype으로 코드들을 관리를 해주면 된다.
+
+### 🌺 스크롤 다루기
+>스크롤을 잘 다루면 애플 사이트처럼 스크롤을 내릴 때 인터렉티브한 생동감 있는 웹사이트를 만들 수 있다.
+
+ ```
+      const outputElem = document.querySelector('.output');
+      window.addEventListener('scroll', function() {
+        outputElem.innerHTML = window.pageYOffset;
+      });
+ ```
+
+ 이 코드에서 쓰인 pageYOffset이 스크롤 위치를 알려주는 이벤트 리스너다.
