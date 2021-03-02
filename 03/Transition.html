@@ -25,7 +25,7 @@
     /* margin: -15px 0 0 -15px; */
     border-radius: 50%;
     background: red;
-    animation: ball-animation 1s alternate forwards;
+    animation: ball-animation 1s 3 alternate forwards;
   }
   /* 
   animation: ball-animation 1s alternate;
@@ -35,7 +35,7 @@
   동작하다가 멈추는 자리에 머무른다.
    */
   .ball.end {
-    background: dodgerblue;
+    border: 5px solid violet;
   }
 </style>
 <body>
@@ -47,15 +47,25 @@
     const ballElem = document.querySelector('.ball');
 
     window.addEventListener('click', function(e) {
-      ballElem.style.transform = 'translate(' + (e.clientX - 15 )+ 'px, ' + (e.clientY - 15) + 'px)';
+      // ballElem.style.transform = 'translate(' + (e.clientX - 15 )+ 'px, ' + (e.clientY - 15) + 'px)';
+
+      ballElem.style.animation = 'ball-animation 1s 3 alternate forwards';
     });
 
-    ballElem.addEventListener('transitionend', function(e) {
+    //transitionend
+    //transitionstart
+    //animationend
+    //animationstart
+    ballElem.addEventListener('animationend', function(e) {
       ballElem.classList.add('end');
       console.log(e.elapsedTime);
     }); //트랜지션이 끝날 때 발생하는 이벤트.
 
-    
+
+    //animationiteration : 반복이 될 때 일어나는 
+    ballElem.addEventListener('animationiteration', function () {
+      console.log('반복!');
+    });
   </script>
 </body>
 </html>

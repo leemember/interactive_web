@@ -1,4 +1,5 @@
 # 🎆 인터랙티브 웹 개발 공부하기
+
 > 😄 CSS와 자바스크립트를 이용하여 요즘 웹 트랜드에 맞는 역동적인 인터랙티브 웹 구현하기
 
 <br>
@@ -19,7 +20,7 @@
 
 <br>
 
--------
+---
 
 <br>
 
@@ -448,6 +449,7 @@ const person = {};
       }
       person.introduce();
 ```
+
 > 속성들 중에 값이 함수인 것들은 메서드라 부른다.
 
 ```
@@ -455,6 +457,7 @@ person.introduce = function() {
         console.log('안녕하세요 저는 일분이이고 나이는 10살이에요');
       }
 ```
+
 이런 걸 <b>메서드</b>라고 부름
 
 ```
@@ -469,6 +472,7 @@ const person = {
       console.log('person.name');
       person.introduce();
 ```
+
 > 아예 객체를 const를 사용하여 변수로 만들기
 
 ```
@@ -480,7 +484,8 @@ const person = {
         }
       };
 ```
->여기서 this까지 해주어야 한다. 그래야 콘솔창에 값이 찍힌다. (this = 메서드가 실행한 주최 객체)
+
+> 여기서 this까지 해주어야 한다. 그래야 콘솔창에 값이 찍힌다. (this = 메서드가 실행한 주최 객체)
 
 ### 생성자와 인스턴스 알아보기
 
@@ -501,42 +506,121 @@ const person = {
       person1.introduce();
       person2.introduce();
 ```
+
 > 생성자(constructor) : 생성자를 만들 때는 왠만하면 첫글자는 대문자로 해준다. <br>
-인스턴스 : new를 붙혀서 변수를 만들었기 때문에 각각 this를 해준 함수에서 원하는 값을 출력해준다.<br>
-파라미터 매개변수를 통해 값들을 뽑아내니 더욱 더 코드가 가독성도 좋아지고 간결화되었다.
-그리고 공통되는 부분들은 prototype으로 코드들을 관리를 해주면 된다.
+> 인스턴스 : new를 붙혀서 변수를 만들었기 때문에 각각 this를 해준 함수에서 원하는 값을 출력해준다.<br>
+> 파라미터 매개변수를 통해 값들을 뽑아내니 더욱 더 코드가 가독성도 좋아지고 간결화되었다.
+> 그리고 공통되는 부분들은 prototype으로 코드들을 관리를 해주면 된다.
+
+<br>
 
 ### 🌺 스크롤 다루기
->스크롤을 잘 다루면 애플 사이트처럼 스크롤을 내릴 때 인터렉티브한 생동감 있는 웹사이트를 만들 수 있다. 그래서 스크롤 위치에 따라 오브젝트를 조작해보도록 하자.
 
- ```
-      const outputElem = document.querySelector('.output');
-      window.addEventListener('scroll', function() {
-        outputElem.innerHTML = window.pageYOffset;
-      });
- ```
+> 스크롤을 잘 다루면 애플 사이트처럼 스크롤을 내릴 때 인터렉티브한 생동감 있는 웹사이트를 만들 수 있다. 그래서 스크롤 위치에 따라 오브젝트를 조작해보도록 하자.
 
- 이 코드에서 쓰인 pageYOffset이 스크롤 위치를 알려주는 코드이다. 
+```
+     const outputElem = document.querySelector('.output');
+     window.addEventListener('scroll', function() {
+       outputElem.innerHTML = window.pageYOffset;
+     });
+```
 
- ```
-      const outputElem = document.querySelector('.output');
-      const ilbuniElem = document.querySelector('.ilbuni');
-      let num = 0;
+이 코드에서 쓰인 pageYOffset이 스크롤 위치를 알려주는 코드이다.
 
-      function showValue() {
-        let posY = ilbuniElem.getBoundingClientRect().top;
-        outputElem.innerHTML = posY;
+```
+     const outputElem = document.querySelector('.output');
+     const ilbuniElem = document.querySelector('.ilbuni');
+     let num = 0;
 
-         if(posY < window.innerHeight * 0.2) {
-          ilbuniElem.classList.add('zoom');
-         } else {
-          ilbuniElem.classList.remove('zoom');
-         }
+     function showValue() {
+       let posY = ilbuniElem.getBoundingClientRect().top;
+       outputElem.innerHTML = posY;
+
+        if(posY < window.innerHeight * 0.2) {
+         ilbuniElem.classList.add('zoom');
+        } else {
+         ilbuniElem.classList.remove('zoom');
+        }
+     }
+
+     window.addEventListener('scroll', function() {
+       showValue();
+     });
+     showValue();
+```
+
+> 먼저 일분이 변수와, header부분 변수를 선언해준다. 그리고 어떤 이벤트를 리스너시켜 줄 때는 함수로 만들어서 관리해주는 것이 좋다. showValue라는 이름으로 함수를 선언해주는데 그 함수 안에다가 또 포지션y값의 변수를 선언해준다. 그리고 일분이가 top부분에 도달했을 때에 조건문 (if)을 사용해서 그 위치의 0.2배 쯤 도달했을 경우 css로 미리 zoom이라는 클래스의 스타일을 만들어준 다음에 자바스크립트로 zoom클레스를 붙혀준다. 그리고 top부분과 멀어져 가면 zoom 클레스를 제거해주는 형태로 코드를 짜면 된다. 그리고 마지막에는 scroll이라는 이벤트 리스너를 사용해 위에 조건문이 선언된 함수를 호출해주면 된다.
+
+ <br>
+
+### 🌺 Transition / Animation 이벤트
+
+- transitionend : 트랜지션이 끝나면 이벤트 발생
+- transitionstart : 트랜지션 시작과 동시에 이벤트 발생
+- animationend : 애니메이션 끝나면 이벤트 발생
+- animationstart : 애니메이션 시작과 동시에 이벤트 발생
+- animationiteration : 반복이 되면서 이벤트 발생
+
+이렇게 JS의 이벤트 리스너 종류를 알아보았다. CSS도 같이 적용을 해주어야 JS로 이벤트를 다룰 수 있다.
+
+<br>
+
+### 🌺 타이밍 제어하기
+
+> 인터랙티브 웹 개발을 할 때 정말 자주 쓰이는 setTimeout 이벤트 리스너를 알아보자.
+
+setTimeout은 비동기작업 할 떄 자주 쓰이는 이벤트 리스너다.
+
+```
+function sample() {
+      console.log('sample!');
+    }
+
+  timeId = setTimeout(sample, 3000);
+
+  btn.addEventListener('click', function() {
+    clearTimeout(timeId);
+  });
+```
+
+- setTimeout이 일어나기도 전에 clearTimeout 이벤트리스너가 호출되는 btn을 누르면 sample 이라는 말이 콘솔창에 찍히기도 전에 취소된다. 버튼 안누르고 그냥 3초 기다리면 sample! 이라는 글이 출력된다.
+
+```
+  timeId = setInterval(sample, 100);
+```
+
+- setInterval : 계속 반복시켜주는 이벤트 리스너다.
+
+```
+let timeId;
+    let n = 0;
+    const btn = document.querySelector('.btn');
+
+    function sample() {
+      n++;
+      console.log(n);
+      if (n > 200) {
+        return;
       }
 
-      window.addEventListener('scroll', function() {
-        showValue();
-      });
-      showValue();
- ```
- > 먼저 일분이 변수와, header부분 변수를 선언해준다. 그리고 어떤 이벤트를 리스너시켜 줄 때는 함수로 만들어서 관리해주는 것이 좋다. showValue라는 이름으로 함수를 선언해주는데 그 함수 안에다가 또 포지션y값의 변수를 선언해준다. 그리고 일분이가 top부분에 도달했을 때에 조건문 (if)을 사용해서 그 위치의 0.2배 쯤 도달했을 경우 css로 미리 zoom이라는 클래스의 스타일을 만들어준 다음에 자바스크립트로 zoom클레스를 붙혀준다. 그리고 top부분과 멀어져 가면 zoom 클레스를 제거해주는 형태로 코드를 짜면 된다. 그리고 마지막에는 scroll이라는 이벤트 리스너를 사용해 위에 조건문이 선언된 함수를 호출해주면 된다.
+      timeId = requestAnimationFrame(sample);
+    }
+    sample(); // sample 함수를 만들어 timeId가 실행되게 한다.
+
+    //그리고 btn 눌러서 cancel 해주는 기능까지 만들었다.
+    btn.addEventListener('click', function() {
+      cancelAnimationFrame(timeId);
+    });
+```
+
+- requestAnimationFrame : 사용할 때 조건을 달아서 사용하기도 한다.
+
+```
+n++;
+  console.log(n);
+  if (n > 200) {
+   return;
+  }
+```
+
+이렇게
