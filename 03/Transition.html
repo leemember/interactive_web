@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>트렌지션/애니메이션 이벤트</title>
+</head>
+<style>
+  @keyframes ball-animation {
+    from {
+      transform: translate(0, 0);
+    }
+    to {
+      transform: translate(200px, 200px);
+    }
+  }
+
+  .ball {    
+    position: absolute;
+    left: 0;
+    top : 0;
+    width: 30px;
+    height: 30px;
+    /* margin: -15px 0 0 -15px; */
+    border-radius: 50%;
+    background: red;
+    animation: ball-animation 1s alternate forwards;
+  }
+  /* 
+  animation: ball-animation 1s alternate;
+  여기서 alternate는 왔다갔다 왕복해주는 것
+  만약 숫자를 넣으면 3번 반복해준다.
+  forwards를 쓰면 원래자리로 원상복귀 하는게 아니라
+  동작하다가 멈추는 자리에 머무른다.
+   */
+  .ball.end {
+    background: dodgerblue;
+  }
+</style>
+<body>
+  <div class="ball">
+
+  </div>
+
+  <script>
+    const ballElem = document.querySelector('.ball');
+
+    window.addEventListener('click', function(e) {
+      ballElem.style.transform = 'translate(' + (e.clientX - 15 )+ 'px, ' + (e.clientY - 15) + 'px)';
+    });
+
+    ballElem.addEventListener('transitionend', function(e) {
+      ballElem.classList.add('end');
+      console.log(e.elapsedTime);
+    }); //트랜지션이 끝날 때 발생하는 이벤트.
+
+    
+  </script>
+</body>
+</html>
