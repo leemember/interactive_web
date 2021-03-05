@@ -113,6 +113,8 @@ z-index 를 안해주면 제일 마지막으로
 .wall-title {
     font-size: 5rem;
 }
+
+/* 프로그레스바 뒷배경 */
 .progress-bar-con {
     position: fixed;
     left: 0;
@@ -122,10 +124,12 @@ z-index 를 안해주면 제일 마지막으로
     height: 5px;
     background: #555;
 }
+
+/* 프로그레스바 막대기*/
 .progress-bar {
     width: 0;
     height: 100%;
-    background: #00a8ff;
+    background: #ff7510;
 }
 
 /* character */
