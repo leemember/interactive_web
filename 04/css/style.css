@@ -1,5 +1,6 @@
 /* animation */
 @keyframes ani-head {
+  /* 까딱까딱하게 하려고 10도정도 기울여주기 */
     to { transform: rotateX(-10deg); }
 }
 @keyframes ani-running-leg {
@@ -133,6 +134,10 @@ z-index 를 안해주면 제일 마지막으로
 }
 
 /* character */
+/* 캐릭터 위치값 지정해주기 
+브라우저 크기 조절에 따라 캐릭터들
+크기 조절을 해주려고 뷰포트 단위를 사용했다.
+*/
 .character {
     position: absolute;
     left: 12%;
@@ -140,11 +145,20 @@ z-index 를 안해주면 제일 마지막으로
     width: 10vw;
     height: 15.58vw;
     transform-style: preserve-3d;
+    /* 
+    transform-style: preserve-3d; : 상위 엘리먼트에서 적용된 효과가 자식까지 적용되게 해주려고!
+     */
 }
+
 .character[data-direction='forward'] { transform: rotateY(180deg); }
 .character[data-direction='backward'] { transform: rotateY(0deg); }
 .character[data-direction='left'] { transform: rotateY(-90deg); }
 .character[data-direction='right'] { transform: rotateY(90deg); }
+
+/* character-face-con : 각 부위별 컨테이너다. */
+/* 컨테이너 안에 있는 애들이니 얘네도 부모와 같이
+  transform-style: preserve-3d; 선언해준다.
+ */
 .character-face-con {
     position: absolute;
     transform-style: preserve-3d;
@@ -159,20 +173,42 @@ z-index 를 안해주면 제일 마지막으로
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: cover;
+    /* 사이즈를 정확히 맞추기 위해 size:cover로 지정 */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+    /* 뒤집힌 상태에서 뒷면을 보이게 할것이냐 안보이게 할것인지!*/
 }
 .character-face.face-back {
     transform: rotateY(180deg);
+    /* 뒷통수를 보이게 하기 위해서 rotate180도 돌려준다. */
 }
+
+/* 캐릭터 머리통 */
 .character-head {
     left: calc(42 / 856 * 100%);
+    /* calc(42 / 856 * 100%) = calc(left / 전체 * 100%)*/
+    /* 캐릭터 전체 너비가 856이고 머리통이 가운데에 가게하기 위해서
+    왼쪽 여백크기가 42px이다. 그래서 42를 856전체너비로 나눈뒤 100%하면
+    딱 42px만큼 떨어지는데 화면 크기가 바뀌어도 위치값이 그대로다.
+    */
     top: 0;
     z-index: 60;
     width: calc(770 / 856 * 100%);
+    /* 
+    캐릭터 전체넓이에서 머리통이 770px인데 그걸 나눠주고 *100% 해주기
+    */
     height: calc(648 / 1334 * 100%);
-    transform-origin: center bottom;
+    /* 
+    캐릭터 전체높이에서 머리통 세로길이 648px인데 그걸 나눠주고 *100% 해주기
+    */
+    transform-origin: center bottom; 
+    /*
+    x : center, y : bottom
+    머리가 까딱까딱 거리게끔 동작하게하려고
+    고개 까딱까딱하게 하는 animation은 맨 위 확인!
+    */
     animation: ani-head 0.6s infinite alternate cubic-bezier(0.46, 0.18, 0.66, 0.93);
+    /* cubic-bezier(0.46, 0.18, 0.66, 0.93) = 애니메이션의 가속도 */
 }
 .character-head-face.face-front { background-image: url('../images/ilbuni_head_front.png'); }
 .character-head-face.face-back { background-image: url('../images/ilbuni_head_back.png'); }

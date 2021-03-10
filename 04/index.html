@@ -61,8 +61,54 @@
         </div>
         <!--// house -->
 
-        <!-- 캐릭터 놓이는 곳 -->
+        <!-- 
+           data-[지정할 속성 이름]="지정할 속성 이름"
 
+           CSS에다가는 밑에처럼 선택자를 활용해서 효과를 줄 수 있다.
+          .character[data-direction='forward'] { transform: rotateY(180deg); }
+          .character[data-direction='backward'] { transform: rotateY(0deg); }
+          .character[data-direction='left'] { transform: rotateY(-90deg); }
+          .character[data-direction='right'] { transform: rotateY(90deg); }
+          그리고 자바스크립트로 키보드를 입력하면 캐릭터가 움직일 수 있도록 제어하면 된다.
+         -->
+        <!-- 캐릭터 놓이는 곳 -->
+        <div class="character" data-direction="left">
+          <!-- 캐릭터머리 -->
+          <div class="character-face-con character-head">
+            <div class="character-face character-head-face face-front"></div>
+            <div class="character-face character-head-face face-back"></div>
+          </div>
+
+          <!-- 캐릭터 몸통 -->
+          <div class="character-face-con character-torso">
+            <div class="character-face character-torso-face face-front"></div>
+            <div class="character-face character-torso-face face-back"></div>
+          </div>
+
+          <!-- 캐릭터 오른쪽 팔 -->
+          <div class="character-face-con character-arm character-arm-right">
+            <div class="character-face character-arm-face face-front"></div>
+            <div class="character-face character-arm-face face-back"></div>
+          </div>
+
+          <!-- 캐릭터 왼쪽 팔 -->
+          <div class="character-face-con character-arm character-arm-left">
+            <div class="character-face character-arm-face face-front"></div>
+            <div class="character-face character-arm-face face-back"></div>
+          </div>
+
+          <!-- 캐릭터 오른쪽 다리 -->
+          <div class="character-face-con character-leg character-leg-right">
+            <div class="character-face character-leg-face face-front"></div>
+            <div class="character-face character-leg-face face-back"></div>
+          </div>
+
+          <!-- 캐릭터 왼쪽 다리 -->
+          <div class="character-face-con character-leg character-leg-left">
+            <div class="character-face character-leg-face face-front"></div>
+            <div class="character-face character-leg-face face-back"></div>
+          </div>
+        </div>
     </div>
     <!--// stage -->
 </div>
