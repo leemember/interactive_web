@@ -11,6 +11,8 @@
         transform: rotateX(30deg);
     }
 }
+
+/* 팔과 다리가 x축 y축 방향을 주면서 자연스럽게 움직이게 함 */
 @keyframes ani-running-arm {
     from {
         transform: rotateY(30deg);

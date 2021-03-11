@@ -43,4 +43,14 @@
   window.addEventListener('resize', resizeHandler);
   //resize라는 이벤트를 쓸 때마다 resizeHandler의 함수가 반응하게 적용하기.
   resizeHandler(); //리사이즈 작업은 인터렉티브 웹처럼 자바스크립트 작업이 쌔게 들어갈 때 필수적으로 해주어야된다.
+
+
+  // %로 변환해 줘야한다. 그러려면 전체 width로 나눠주고 * 100 해주면 퍼센트로 변환이 된다.
+  stageElem.addEventListener('click', function(e) {
+    new Character ({
+      xPos: e.clientX / window.innerWidth * 100
+    })
+  })
+
+  resizeHandler();
 })();

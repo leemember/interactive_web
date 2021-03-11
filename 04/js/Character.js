@@ -1,6 +1,9 @@
 function Character(info) {
     this.mainElem = document.createElement('div');
     this.mainElem.classList.add('character');
+
+
+    // 생성자로 캐릭터를 가지고 왔다.
     this.mainElem.innerHTML = ''
         + '<div class="character-face-con character-head">'
             + '<div class="character-face character-head-face face-front"></div>'
@@ -40,14 +43,17 @@ function Character(info) {
     // 좌우 이동 중인지 아닌지
     this.runningState = false;
     this.rafId;
-    this.init();
+    this.init(); //this에 init 실행
 }
 
 Character.prototype = {
     constructor: Character,
-    init: function () {
-        const self = this;
 
+    //초기화 해주는 함수
+    init: function () {
+        const self = this; // 여기서 가르키는 this는 객체이다. (캐릭터를 의미함)
+
+        //스크롤이 일어나면 이런 함수를 실행해주세요
         window.addEventListener('scroll', function () {
             clearTimeout(self.scrollState);
 
