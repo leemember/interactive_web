@@ -2,7 +2,6 @@ function Character(info) {
     this.mainElem = document.createElement('div');
     this.mainElem.classList.add('character');
 
-
     // 생성자로 캐릭터를 가지고 왔다.
     this.mainElem.innerHTML = ''
         + '<div class="character-face-con character-head">'
@@ -54,17 +53,20 @@ Character.prototype = {
         const self = this; // 여기서 가르키는 this는 객체이다. (캐릭터를 의미함)
 
         //스크롤이 일어나면 이런 함수를 실행해주세요
+        //스크롤 상황에 따라 일어나게 하는 함수
         window.addEventListener('scroll', function () {
             clearTimeout(self.scrollState);
+            // clearTimeout은 setTimeout이랑 세트다.
+            // 스크롤 할 때마다 scrollState얘가 되지 않게 노력하는애다.
 
             if (!self.scrollState) {
                 self.mainElem.classList.add('running');
             }
 
             self.scrollState = setTimeout(function () {
-                self.scrollState = false;
+                self.scrollState = false; //스크롤 멈춘상태
                 self.mainElem.classList.remove('running');
-            }, 500);
+            }, 500); //0.5초 후에 실행된다.
 
             // 이전 스크롤 위치와 현재 스크롤 위치를 비교
             if (self.lastScrollTop > pageYOffset) {
@@ -75,9 +77,12 @@ Character.prototype = {
                 self.mainElem.setAttribute('data-direction', 'forward');
             }
 
+            //마지막으로 스크롤한 위치가 저장된다.
             self.lastScrollTop = pageYOffset;
         });
 
+        // --------------------------------------------------------------
+        // 키보드로 인한 이벤트 리스너        
         window.addEventListener('keydown', function (e) {
             if (self.runningState) return;
 
